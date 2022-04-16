@@ -99,10 +99,23 @@ const form = function (url, params) {
   return request(false, query)
 }
 
+const deleteReq = function (url, params) {
+	const query = {
+	  url: url,
+	  method: 'delete',
+	  withCredentials: true,
+	  timeout: 30000,
+	  params: params,
+	  headers: { 'request-ajax': true }
+	}
+	return request(false, query)
+  }
+
 export {
   post,
   postWithLoadTip,
   postWithOutLoadTip,
   get,
-  form
+  form,
+  deleteReq
 }
