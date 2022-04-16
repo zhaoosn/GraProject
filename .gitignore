@@ -1,0 +1,9 @@
+# Created by .ignore support plugin (hsz.mobi)
+.idea/inspectionProfiles/
+vue/.idea/inspectionProfiles/
+xzs/target/generated-sources/
+vue/xzs-admin/node_modules
+vue/xzs-admin/.idea
+vue/xzs-admin/
+vue/xzs-student/node_modules
+vue/xzs-student/.idea
