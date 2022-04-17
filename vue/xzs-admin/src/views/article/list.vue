@@ -100,6 +100,7 @@
 
 <script>
   import axios from "axios";
+  import articleApi from '@/api/article';
 
   export default {
     name: "Article",
@@ -144,22 +145,33 @@
         })
       },
       load() {
-        this.request.get("/article/page", {
-          params: {
+        // this.request.get("/article/page", {
+        //   params: {
+        //     pageNum: this.pageNum,
+        //     pageSize: this.pageSize,
+        //     name: this.name,
+        //   }
+        // }).then(res => {
+        //   this.tableData = res.data.records
+        //   this.total = res.data.total
+        // })
+		articleApi.articlePage({
             pageNum: this.pageNum,
             pageSize: this.pageSize,
             name: this.name,
-          }
-        }).then(res => {
-
+          }).then(res => {
           this.tableData = res.data.records
           this.total = res.data.total
-
         })
 
       },
       changeEnable(row) {
-        this.request.post("/article/update", row).then(res => {
+        // this.request.post("/article/update", row).then(res => {
+        //   if (res.code === '200') {
+        //     this.$message.success("操作成功")
+        //   }
+        // })
+		articleApi.updateArticle(row).then(res => {
           if (res.code === '200') {
             this.$message.success("操作成功")
           }
@@ -174,7 +186,15 @@
         this.dialogFormVisible = true
       },
       del(id) {
-        this.request.delete("/article/" + id).then(res => {
+        // this.request.delete("/article/" + id).then(res => {
+        //   if (res.code === '200') {
+        //     this.$message.success("删除成功")
+        //     this.load()
+        //   } else {
+        //     this.$message.error("删除失败")
+        //   }
+        // })
+		articleApi.delete(id).then(res => {
           if (res.code === '200') {
             this.$message.success("删除成功")
             this.load()
@@ -189,7 +209,15 @@
       },
       delBatch() {
         let ids = this.multipleSelection.map(v => v.id)  // [{}, {}, {}] => [1,2,3]
-        this.request.post("/article/del/batch", ids).then(res => {
+        // this.request.post("/article/del/batch", ids).then(res => {
+        //   if (res.code === '200') {
+        //     this.$message.success("批量删除成功")
+        //     this.load()
+        //   } else {
+        //     this.$message.error("批量删除失败")
+        //   }
+        // })
+		articleApi.deleleBatch(ids).then(res => {
           if (res.code === '200') {
             this.$message.success("批量删除成功")
             this.load()
@@ -199,7 +227,16 @@
         })
       },
       save() {
-        this.request.post("/article", this.form).then(res => {
+        // this.request.post("/article", this.form).then(res => {
+        //   if (res.code === '200') {
+        //     this.$message.success("保存成功")
+        //     this.dialogFormVisible = false
+        //     this.load()
+        //   } else {
+        //     this.$message.error("保存失败")
+        //   }
+        // })
+		articleApi.saveArticle(this.form).then(res => {
           if (res.code === '200') {
             this.$message.success("保存成功")
             this.dialogFormVisible = false
